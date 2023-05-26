@@ -1,5 +1,6 @@
 package BinaryTree;
 
+import javax.management.remote.rmi._RMIConnection_Stub;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -47,27 +48,28 @@ public class BinarySearchTree {
     }
 
     public boolean lookup(int value) {
-        if (this.root == null) {
+        if(root == null) {
             return false;
-        } else if (this.root.getValue() == value) {
-            return true;
-        } else {
-            BinaryNode binaryNode = this.root;
+        }
 
-            do {
-                if (binaryNode == null) {
-                    return false;
-                }
-
-                if (value > binaryNode.getValue()) {
-                    binaryNode = binaryNode.getRight();
-                } else {
-                    binaryNode = binaryNode.getLeft();
-                }
-            } while(binaryNode == null || binaryNode.getValue() != value);
-
+        if(root.getValue() == value) {
             return true;
         }
+
+        BinaryNode binaryNode = this.root;
+
+        while(binaryNode != null) {
+            if(binaryNode.getValue() == value) {
+                return true;
+            }
+
+            if(value > binaryNode.getValue()) {
+                binaryNode = binaryNode.getRight();
+            } else {
+                binaryNode = binaryNode.getLeft();
+            }
+        }
+        return false;
     }
 
     public boolean remove(int value) {
