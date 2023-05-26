@@ -1,5 +1,11 @@
 package BinaryTree;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class BinarySearchTree {
     private BinaryNode root = null;
 
@@ -124,6 +130,46 @@ public class BinarySearchTree {
 
             return false;
         }
+    }
+
+    public List<Integer> breathFirstSearch() {
+        BinaryNode currentNode = root;
+        List<Integer> list = new ArrayList<>();
+        Queue<BinaryNode> queue = new LinkedList();
+        queue.add(currentNode);
+
+        while(!queue.isEmpty()) {
+            currentNode = queue.remove();
+            System.out.println(currentNode.getValue());
+            list.add(currentNode.getValue());
+
+            if(currentNode.getLeft() != null) {
+                queue.add(currentNode.getLeft());
+            }
+
+            if(currentNode.getRight() != null) {
+                queue.add(currentNode.getRight());
+            }
+        }
+        return list;
+    }
+
+    public List<Integer> breathFirstSearchRecursive(Queue<BinaryNode> queue, List<Integer> list) {
+
+       if(queue.isEmpty()) {
+           return list;
+       }
+
+       BinaryNode currentNode = queue.remove();
+        list.add(currentNode.getValue());
+        if(currentNode.getLeft() != null) {
+            queue.add(currentNode.getLeft());
+        }
+
+        if(currentNode.getRight() != null) {
+            queue.add(currentNode.getRight());
+        }
+        return breathFirstSearchRecursive(queue, list);
     }
 
     public void printTree(BinaryNode root) {

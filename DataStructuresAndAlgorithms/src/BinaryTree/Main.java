@@ -1,4 +1,10 @@
 package BinaryTree;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
@@ -19,5 +25,14 @@ public class Main {
         tree.printTree(tree.getRoot());
         tree.printTreePreOrder(tree.getRoot());
         tree.printTreePostOrder(tree.getRoot());
+
+        System.out.println(tree.breathFirstSearch());
+
+        BinaryNode currentNode = tree.getRoot();
+        List<Integer> list = new ArrayList<>();
+        Queue<BinaryNode> queue = new LinkedList();
+        queue.add(currentNode);
+        System.out.println(tree.breathFirstSearchRecursive(queue, list));
+
     }
 }
