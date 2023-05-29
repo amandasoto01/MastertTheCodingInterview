@@ -1,7 +1,5 @@
 package BinaryTree;
 
-import javax.management.remote.rmi._RMIConnection_Stub;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -174,47 +172,50 @@ public class BinarySearchTree {
         return breathFirstSearchRecursive(queue, list);
     }
 
-    public void printTree(BinaryNode root) {
+    public void printTreeInOrder(BinaryNode root) {
         System.out.println("In order");
-        this.inOrderTraversal(root);
+        this.DFSInOrderTraversal(root, new ArrayList<>());
         System.out.println();
     }
 
     public void printTreePreOrder(BinaryNode root) {
         System.out.println("Pre order");
-        this.preOrderTraversal(root);
+        this.DFSPreOrderTraversal(root, new ArrayList<>());
         System.out.println();
     }
 
     public void printTreePostOrder(BinaryNode root) {
         System.out.println("Post order");
-        this.postOrderTraversal(root);
+        this.DFSPostOrderTraversal(root, new ArrayList<>());
         System.out.println();
     }
 
-    private void inOrderTraversal(BinaryNode root) {
-        if (root != null) {
-            this.inOrderTraversal(root.getLeft());
-            System.out.print(root.getValue() + " ");
-            this.inOrderTraversal(root.getRight());
+    private void DFSInOrderTraversal(BinaryNode node, List<Integer> list) {
+        if (node != null) {
+            this.DFSInOrderTraversal(node.getLeft(), list);
+            list.add(node.getValue());
+            System.out.print(node.getValue() + " ");
+            this.DFSInOrderTraversal(node.getRight(), list);
         }
 
     }
 
-    private void preOrderTraversal(BinaryNode root) {
-        if (root != null) {
-            System.out.print(root.getValue() + " ");
-            this.preOrderTraversal(root.getLeft());
-            this.preOrderTraversal(root.getRight());
+    private void DFSPreOrderTraversal(BinaryNode node, List<Integer> list) {
+        if (node != null) {
+            System.out.print(node.getValue() + " ");
+            list.add(node.getValue());
+            this.DFSPreOrderTraversal(node.getLeft(), list);
+            this.DFSPreOrderTraversal(node.getRight(), list);
         }
 
     }
 
-    private void postOrderTraversal(BinaryNode root) {
-        if (root != null) {
-            this.postOrderTraversal(root.getLeft());
-            this.postOrderTraversal(root.getRight());
-            System.out.print(root.getValue() + " ");
+    private void DFSPostOrderTraversal(BinaryNode node, List<Integer> list) {
+        if (node != null) {
+            this.DFSPostOrderTraversal(node.getLeft(), list);
+            this.DFSPostOrderTraversal(node.getRight(), list);
+            System.out.print(node.getValue() + " ");
+            list.add(node.getValue());
         }
 
     }

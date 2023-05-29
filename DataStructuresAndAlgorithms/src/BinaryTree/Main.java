@@ -16,13 +16,19 @@ public class Main {
         tree.insert(170);
         tree.insert(15);
         tree.insert(1);
-        tree.printTree(tree.getRoot());
+        tree.printTreeInOrder(tree.getRoot());
+        // in order 1,4,6,9,15,20, 170
+        // pre order 9, 4, 1, 6, 20, 15, 170
+        // post order 1, 6, 4 , 15, 170, 20, 9
+        tree.printTreeInOrder(tree.getRoot());
+        tree.printTreePreOrder(tree.getRoot());
+        tree.printTreePostOrder(tree.getRoot());
         System.out.println();
         boolean node = tree.lookup(9);
         System.out.println(node);
         node = tree.lookup(12);
         System.out.println(node);
-        tree.printTree(tree.getRoot());
+        tree.printTreeInOrder(tree.getRoot());
         tree.printTreePreOrder(tree.getRoot());
         tree.printTreePostOrder(tree.getRoot());
 
